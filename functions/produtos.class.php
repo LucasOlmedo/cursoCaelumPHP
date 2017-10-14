@@ -11,11 +11,11 @@ class Produtos
         $this->con = $database->con;
     }
 
-    public function insereProdutos($nome, $preco, $descricao, $categoria_id, $usado = false)
+    public function insereProdutos($produto)
     {
-        $nome = mysqli_real_escape_string($this->con, $nome);
-        $descricao = mysqli_real_escape_string($this->con, $descricao);
-        $query = "INSERT INTO produtos (nome, preco, descricao, categoria_id, usado) VALUES ('{$nome}', {$preco}, '{$descricao}', {$categoria_id}, {$usado})";
+        $produto->nome = mysqli_real_escape_string($this->con, $produto->nome);
+        $produto->descricao = mysqli_real_escape_string($this->con, $produto->descricao);
+        $query = "INSERT INTO produtos (nome, preco, descricao, categoria_id, usado) VALUES ('{$produto->nome}', {$produto->preco}, '{$produto->descricao}', {$produto->categoriaId}, {$produto->usado})";
         $result = mysqli_query($this->con, $query);
         return $result;
     }
