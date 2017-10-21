@@ -50,6 +50,7 @@ $listaProdutos = $produtosClass->listarProdutos();
             <th>#</th>
             <th>Nome</th>
             <th>Preço</th>
+            <th>Preço c/ 10% de desconto</th>
             <th>Categoria</th>
             <th>Usado</th>
             <th width="150">Opções</th>
@@ -60,6 +61,7 @@ $listaProdutos = $produtosClass->listarProdutos();
                     <td><?=$produto->id?></td>
                     <td><?=$produto->nome?></td>
                     <td><?='R$ '.number_format($produto->preco, 2, ',', '.')?></td>
+                    <td><?='R$ '.number_format($produto->calcularDesconto(0.1), 2, ',', '.')?></td>
                     <td><?=!empty($produto->categoria->nome) ? $produto->categoria->nome : '-' ?></td>
                     <td><?=$produto->usado ? 'Sim' : 'Não'?></td>
                     <td>

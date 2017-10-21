@@ -59,11 +59,11 @@ class Produtos
         }
     }
 
-    public function alterarProduto($id, $nome, $preco, $descricao, $categoria_id, $usado = false)
+    public function alterarProduto($id, $produto)
     {
-        $nome = mysqli_real_escape_string($this->con, $nome);
-        $descricao = mysqli_real_escape_string($this->con, $descricao);
-        $query = "UPDATE produtos SET nome='{$nome}', preco={$preco}, descricao='{$descricao}', categoria_id={$categoria_id}, usado={$usado} WHERE id={$id}";
+        $produto->nome = mysqli_real_escape_string($this->con, $produto->nome);
+        $produto->descricao = mysqli_real_escape_string($this->con, $produto->descricao);
+        $query = "UPDATE produtos SET nome='{$produto->nome}', preco={$produto->preco}, descricao='{$produto->descricao}', categoria_id={$produto->categoria}, usado={$produto->usado} WHERE id={$id}";
         if(mysqli_query($this->con, $query)){
             return true;
         }else{

@@ -2,23 +2,25 @@
 include 'functions/sessao.php';
 include 'templates/header.php';
 require_once 'functions/produtos.class.php';
+require_once 'models/produto.model.php';
 
 verificaAcesso();
-
 $id = $_POST['id'];
-$nome = $_POST['nome'];
-$preco = $_POST['preco'];
-$descricao = $_POST['descricao'];
-$categoria = $_POST['categoria'];
-$usado = !empty($_POST['usado']) ? $_POST['usado'] : 'false';
+$produto = new ProdutoModel;
+$produto->setNome($_POST['nome']);
+$produto->setPreco($_POST['preco']);
+$produto->setDescricao($_POST['descricao']);
+$produto->setCategoria($_POST['categoria']);
+$produto->setUsado(!empty($_POST['usado']) ? $_POST['usado'] : 'false');
+
 $produtosClass = new Produtos();
-$result = $produtosClass->alterarProduto($id, $nome, $preco, $descricao, $categoria, $usado);
+$result = $produtosClass->alterarProduto($id, $produto);
 ?>
 <div class="row">   
     <div class="col-md-12">
         <?php if($result){ ?>
             <div class="alert alert-success">
-                <span>Produto: <?=$nome?> - R$ <?=number_format($preco, 2, ',', '.')?> - Alterado com sucesso!</span>
+                <span>Produto: <?=$produto->getNome()?> - R$ <?=number_format($produto->getPreco(), 2, ',', '.')?> - Alterado com sucesso!</span>
             </div>
         <?php }else{ ?>
             <div class="alert alert-danger">

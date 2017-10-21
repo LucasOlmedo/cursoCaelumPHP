@@ -58,6 +58,14 @@ class ProdutoModel
     {
         return $this->usado;
     }
+
+    public function calcularDesconto($porcentagem = 0.1)
+    {
+        if($porcentagem > 0 && $porcentagem < 1){
+            return $this->preco - ($this->preco * $porcentagem);
+        }
+        return $this->preco;
+    }
 }
 
 ?>
