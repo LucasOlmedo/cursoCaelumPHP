@@ -1,5 +1,7 @@
 <?php
 require_once 'database.php';
+require_once 'models/produto.model.php';
+require_once 'models/categoria.model.php';
 
 class Produtos
 {
@@ -15,16 +17,29 @@ class Produtos
     {
         $produto->nome = mysqli_real_escape_string($this->con, $produto->nome);
         $produto->descricao = mysqli_real_escape_string($this->con, $produto->descricao);
-        $query = "INSERT INTO produtos (nome, preco, descricao, categoria_id, usado) VALUES ('{$produto->nome}', {$produto->preco}, '{$produto->descricao}', {$produto->categoriaId}, {$produto->usado})";
+        $query = "INSERT INTO produtos (nome, preco, descricao, categoria_id, usado) VALUES ('{$produto->nome}', {$produto->preco}, '{$produto->descricao}', {$produto->categoria}, {$produto->usado})";
         $result = mysqli_query($this->con, $query);
         return $result;
     }
 
     public function listarProdutos()
     {
+        $arrayProduto = [];
         $query = "SELECT p.*, c.nome AS nome_categoria FROM produtos AS p LEFT JOIN categorias AS c ON c.id = p.categoria_id";
         $lista = mysqli_query($this->con, $query);
-        return $lista;
+        while ($produto = mysqli_fetch_assoc($lista)) {
+            $newProduto = new ProdutoModel;
+            $newProduto->id = $produto['id'];
+            $newProduto->nome = $produto['nome'];
+            $newProduto->preco = $produto['preco'];
+            $newProduto->descricao = $produto['descricao'];
+            $newProduto->usado = $produto['usado'];
+            $newProduto->categoria = new CategoriaModel;
+            $newProduto->categoria->id = $produto['categoria_id'];
+            $newProduto->categoria->nome = $produto['nome_categoria'];
+            array_push($arrayProduto, $newProduto);
+        }
+        return $arrayProduto;
     }
 
     public function verProduto($id)

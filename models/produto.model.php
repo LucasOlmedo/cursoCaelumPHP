@@ -6,7 +6,7 @@ class ProdutoModel
     public $nome;
     public $preco;
     public $descricao;
-    public $categoriaId;
+    public $categoria;
     public $usado;
 
     public function setNome($nome)
@@ -39,14 +39,14 @@ class ProdutoModel
         return $this->descricao;
     }
 
-    public function setCategoriaId($categoriaId)
+    public function setCategoria($categoria)
     {
-        $this->categoriaId = $categoriaId;
+        $this->categoria = $categoria;
     }
 
-    public function getCategoriaId()
+    public function getCategoria()
     {
-        return $this->categoriaId;
+        return $this->categoria;
     }
 
     public function setUsado($usado)

@@ -4,9 +4,8 @@ include 'templates/header.php';
 require_once 'functions/produtos.class.php';
 
 verificaAcesso();
-
 $produtosClass = new Produtos();
-$lista = $produtosClass->listarProdutos();
+$listaProdutos = $produtosClass->listarProdutos();
 ?>
 <?php if(!empty($_GET['removido']) && $_GET['removido'] === 'true'){?>
     <div class="row">
@@ -56,17 +55,17 @@ $lista = $produtosClass->listarProdutos();
             <th width="150">Opções</th>
         </thead>
         <tbody>
-            <?php while ($produto = mysqli_fetch_assoc($lista)) {?>
+            <?php foreach($listaProdutos as $produto){ ?>
                 <tr>
-                    <td><?=$produto['id']?></td>
-                    <td><?=$produto['nome']?></td>
-                    <td><?='R$ ' . number_format($produto['preco'], 2, ',', '.')?></td>
-                    <td><?= (!empty($produto['nome_categoria'])) ? $produto['nome_categoria'] : '-' ?></td>
-                    <td><?=($produto['usado']) ? 'Sim' : 'Não'?></td>
+                    <td><?=$produto->id?></td>
+                    <td><?=$produto->nome?></td>
+                    <td><?='R$ '.number_format($produto->preco, 2, ',', '.')?></td>
+                    <td><?=!empty($produto->categoria->nome) ? $produto->categoria->nome : '-' ?></td>
+                    <td><?=$produto->usado ? 'Sim' : 'Não'?></td>
                     <td>
-                        <a href="ver-produto.php?id=<?=$produto['id']?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                        <a href="formulario-produto.php?id=<?=$produto['id']?>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                        <a href="remover-produto.php?id=<?=$produto['id']?>" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+                        <a href="ver-produto.php?id=<?=$produto->id?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                        <a href="formulario-produto.php?id=<?=$produto->id?>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                        <a href="remover-produto.php?id=<?=$produto->id?>" class="btn btn-danger"><i class="fa fa-remove"></i></a>
                     </td>
                 </tr>
             <?php } ?>
