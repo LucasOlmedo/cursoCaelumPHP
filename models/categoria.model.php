@@ -5,6 +5,12 @@ class CategoriaModel
     private $id;
     private $nome;
 
+    public function __construct(array $fields = [])
+    {
+        $this->id = array_key_exists('id', $fields) ? $fields['id'] : null;
+        $this->nome = array_key_exists('id', $fields) ? $fields['nome'] : null;
+    }
+
     public function setId($id)
     {
         $this->id = $id;

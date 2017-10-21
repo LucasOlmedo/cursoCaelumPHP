@@ -5,8 +5,7 @@ require_once 'functions/categorias.class.php';
 require_once 'models/categoria.model.php';
 
 verificaAcesso();
-$categoria = new CategoriaModel;
-$categoria->setNome($_POST['nome']);
+$categoria = new CategoriaModel($_POST);
 $categoriaClass = new Categorias();
 $result = $categoriaClass->insereCategoria($categoria);
 ?>

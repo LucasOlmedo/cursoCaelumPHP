@@ -6,8 +6,7 @@ require_once 'models/categoria.model.php';
 
 verificaAcesso();
 $id = $_POST['id'];
-$categoria = new CategoriaModel;
-$categoria->setNome($_POST['nome']);
+$categoria = new CategoriaModel($_POST);
 $categoriasClass = new Categorias();
 $result = $categoriasClass->alterarCategoria($id, $categoria);
 ?>

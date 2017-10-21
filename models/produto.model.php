@@ -9,6 +9,16 @@ class ProdutoModel
     private $categoria;
     private $usado;
 
+    public function __construct(array $fields = [])
+    {
+        $this->id = array_key_exists('id', $fields) ? $fields['id'] : null;
+        $this->nome = array_key_exists('id', $fields) ? $fields['nome'] : null;
+        $this->preco = array_key_exists('id', $fields) ? $fields['preco'] : null;
+        $this->descricao = array_key_exists('id', $fields) ? $fields['descricao'] : null;
+        $this->categoria = array_key_exists('id', $fields) ? $fields['categoria'] : null;
+        $this->usado = array_key_exists('id', $fields) ? (!empty($fields['usado']) ? $fields['usado'] : 'false') : null;
+    }
+
     public function setId($id)
     {
         $this->id = $id;

@@ -4,9 +4,7 @@ include 'templates/header.php';
 require_once 'functions/categorias.class.php';
 
 verificaAcesso();
-
 $alterar = false;
-
 if(!empty($_GET['id'])){
     $categoriaClass = new Categorias();
     $categoria = $categoriaClass->verCategoria($_GET['id']);

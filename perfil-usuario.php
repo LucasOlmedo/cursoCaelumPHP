@@ -4,7 +4,6 @@ include 'templates/header.php';
 require_once 'functions/usuarios.class.php';
 
 verificaAcesso();
-
 $usuarioClass = new Usuarios();
 $usuario = $usuarioClass->verUsuario($_GET['id']);
 ?>

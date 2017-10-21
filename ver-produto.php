@@ -4,7 +4,6 @@ include 'templates/header.php';
 require_once 'functions/produtos.class.php';
 
 verificaAcesso();
-
 $produtoClass = new Produtos();
 $produto = $produtoClass->verProduto($_GET['id']);
 ?>

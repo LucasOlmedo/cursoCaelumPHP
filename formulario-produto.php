@@ -5,11 +5,9 @@ require_once 'functions/produtos.class.php';
 require_once 'functions/categorias.class.php';
 
 verificaAcesso();
-
 $alterar = false;
 $categoria = new Categorias();
 $listaCategoria = $categoria->listarCategorias();
-
 if(!empty($_GET['id'])){
     $produtoClass = new Produtos();
     $produto = $produtoClass->verProduto($_GET['id']);

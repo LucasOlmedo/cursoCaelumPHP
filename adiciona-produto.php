@@ -5,13 +5,7 @@ require_once 'functions/produtos.class.php';
 require_once 'models/produto.model.php';
 
 verificaAcesso();
-$produto = new ProdutoModel;
-$produto->setNome($_POST['nome']);
-$produto->setPreco($_POST['preco']);
-$produto->setDescricao($_POST['descricao']);
-$produto->setCategoria($_POST['categoria']);
-$produto->setUsado(!empty($_POST['usado']) ? $_POST['usado'] : 'false');
-
+$produto = new ProdutoModel($_POST);
 $produtoClass = new Produtos;
 $result = $produtoClass->insereProdutos($produto);
 ?>
