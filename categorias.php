@@ -4,9 +4,8 @@ include 'templates/header.php';
 require_once 'functions/categorias.class.php';
 
 verificaAcesso();
-
 $categoriaClass = new Categorias();
-$lista = $categoriaClass->listarCategorias();
+$listaCategorias = $categoriaClass->listarCategorias();
 ?>
 <?php if(!empty($_GET['removido']) && $_GET['removido'] === 'true'){?>
     <div class="row">
@@ -53,14 +52,14 @@ $lista = $categoriaClass->listarCategorias();
             <th width="150">Opções</th>
         </thead>
         <tbody>
-            <?php while ($categoria = mysqli_fetch_assoc($lista)) {?>
+            <?php foreach ($listaCategorias as $categoria) {?>
                 <tr>
-                    <td><?=$categoria['id']?></td>
-                    <td><?=$categoria['nome']?></td>
+                    <td><?=$categoria->getId()?></td>
+                    <td><?=$categoria->getNome()?></td>
                     <td>
-                        <a href="ver-categoria.php?id=<?=$categoria['id']?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                        <a href="formulario-categoria.php?id=<?=$categoria['id']?>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                        <a href="remover-categoria.php?id=<?=$categoria['id']?>" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+                        <a href="ver-categoria.php?id=<?=$categoria->getId()?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                        <a href="formulario-categoria.php?id=<?=$categoria->getId()?>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                        <a href="remover-categoria.php?id=<?=$categoria->getId()?>" class="btn btn-danger"><i class="fa fa-remove"></i></a>
                     </td>
                 </tr>
             <?php } ?>

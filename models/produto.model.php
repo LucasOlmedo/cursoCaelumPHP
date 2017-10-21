@@ -2,12 +2,22 @@
 
 class ProdutoModel
 {
-    public $id;
-    public $nome;
-    public $preco;
-    public $descricao;
-    public $categoria;
-    public $usado;
+    private $id;
+    private $nome;
+    private $preco;
+    private $descricao;
+    private $categoria;
+    private $usado;
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 
     public function setNome($nome)
     {

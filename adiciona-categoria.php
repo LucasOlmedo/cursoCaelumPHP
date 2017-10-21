@@ -2,18 +2,19 @@
 include 'functions/sessao.php';
 include 'templates/header.php';
 require_once 'functions/categorias.class.php';
+require_once 'models/categoria.model.php';
 
 verificaAcesso();
-
-$nome = $_POST['nome'];
+$categoria = new CategoriaModel;
+$categoria->setNome($_POST['nome']);
 $categoriaClass = new Categorias();
-$result = $categoriaClass->insereCategoria($nome);
+$result = $categoriaClass->insereCategoria($categoria);
 ?>
 <div class="row">   
     <div class="col-md-12">
         <?php if($result){ ?>
             <div class="alert alert-success">
-                <span>Categoria: <?=$nome?> - Adicionada com sucesso!</span>
+                <span>Categoria: <?=$categoria->getNome()?> - Adicionada com sucesso!</span>
             </div>
         <?php }else{ ?>
             <div class="alert alert-danger">

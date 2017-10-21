@@ -4,7 +4,6 @@ include 'templates/header.php';
 require_once 'functions/categorias.class.php';
 
 verificaAcesso();
-
 $categoriaClass = new Categorias();
 $categoria = $categoriaClass->verCategoria($_GET['id']);
 ?>
@@ -22,10 +21,10 @@ $categoria = $categoriaClass->verCategoria($_GET['id']);
     <div class="col-md-6 col-md-offset-3">
         <ul class="list-group">
             <li class="list-group-item">
-                <h4><strong>ID: </strong> <span class="pull-right">#<?=$categoria->id?></span></h4>
+                <h4><strong>ID: </strong> <span class="pull-right">#<?=$categoria->getId()?></span></h4>
             </li>
             <li class="list-group-item">
-                <h4><strong>Nome: </strong> <span class="pull-right"><?=$categoria->nome?></span></h4>
+                <h4><strong>Nome: </strong> <span class="pull-right"><?=$categoria->getNome()?></span></h4>
             </li>
         </ul>
     </div>

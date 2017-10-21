@@ -15,9 +15,9 @@ class Produtos
 
     public function insereProdutos($produto)
     {
-        $produto->nome = mysqli_real_escape_string($this->con, $produto->nome);
-        $produto->descricao = mysqli_real_escape_string($this->con, $produto->descricao);
-        $query = "INSERT INTO produtos (nome, preco, descricao, categoria_id, usado) VALUES ('{$produto->nome}', {$produto->preco}, '{$produto->descricao}', {$produto->categoria}, {$produto->usado})";
+        $produto->setNome(mysqli_real_escape_string($this->con, $produto->getNome()));
+        $produto->setDescricao(mysqli_real_escape_string($this->con, $produto->getDescricao()));
+        $query = "INSERT INTO produtos (nome, preco, descricao, categoria_id, usado) VALUES ('{$produto->getNome()}', {$produto->getPreco()}, '{$produto->getDescricao()}', {$produto->getCategoria()}, {$produto->getUsado()})";
         $result = mysqli_query($this->con, $query);
         return $result;
     }
@@ -29,14 +29,14 @@ class Produtos
         $lista = mysqli_query($this->con, $query);
         while ($produto = mysqli_fetch_assoc($lista)) {
             $newProduto = new ProdutoModel;
-            $newProduto->id = $produto['id'];
-            $newProduto->nome = $produto['nome'];
-            $newProduto->preco = $produto['preco'];
-            $newProduto->descricao = $produto['descricao'];
-            $newProduto->usado = $produto['usado'];
-            $newProduto->categoria = new CategoriaModel;
-            $newProduto->categoria->id = $produto['categoria_id'];
-            $newProduto->categoria->nome = $produto['nome_categoria'];
+            $newProduto->setId($produto['id']);
+            $newProduto->setNome($produto['nome']);
+            $newProduto->setPreco($produto['preco']);
+            $newProduto->setDescricao($produto['descricao']);
+            $newProduto->setUsado($produto['usado']);
+            $newProduto->setCategoria(new CategoriaModel);
+            $newProduto->getCategoria()->setId($produto['categoria_id']);
+            $newProduto->getCategoria()->setNome($produto['nome_categoria']);
             array_push($arrayProduto, $newProduto);
         }
         return $arrayProduto;
@@ -46,7 +46,16 @@ class Produtos
     {
         $query = "SELECT p.*, c.nome AS nome_categoria FROM produtos AS p LEFT JOIN categorias AS c ON c.id = p.categoria_id WHERE p.id = {$id}";
         $produto = mysqli_fetch_object(mysqli_query($this->con, $query));
-        return $produto;
+        $newProduto = new ProdutoModel;
+        $newProduto->setId($produto->id);
+        $newProduto->setNome($produto->nome);
+        $newProduto->setPreco($produto->preco);
+        $newProduto->setDescricao($produto->descricao);
+        $newProduto->setUsado($produto->usado);
+        $newProduto->setCategoria(new CategoriaModel);
+        $newProduto->getCategoria()->setId($produto->categoria_id);
+        $newProduto->getCategoria()->setNome($produto->nome_categoria);
+        return $newProduto;
     }
 
     public function removerProduto($id)
@@ -61,9 +70,9 @@ class Produtos
 
     public function alterarProduto($id, $produto)
     {
-        $produto->nome = mysqli_real_escape_string($this->con, $produto->nome);
-        $produto->descricao = mysqli_real_escape_string($this->con, $produto->descricao);
-        $query = "UPDATE produtos SET nome='{$produto->nome}', preco={$produto->preco}, descricao='{$produto->descricao}', categoria_id={$produto->categoria}, usado={$produto->usado} WHERE id={$id}";
+        $produto->setNome(mysqli_real_escape_string($this->con, $produto->getNome()));
+        $produto->setDescricao(mysqli_real_escape_string($this->con, $produto->getDescricao()));
+        $query = "UPDATE produtos SET nome='{$produto->getNome()}', preco={$produto->getPreco()}, descricao='{$produto->getDescricao()}', categoria_id={$produto->getCategoria()}, usado={$produto->getUsado()} WHERE id={$id}";
         if(mysqli_query($this->con, $query)){
             return true;
         }else{

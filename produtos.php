@@ -58,16 +58,16 @@ $listaProdutos = $produtosClass->listarProdutos();
         <tbody>
             <?php foreach($listaProdutos as $produto){ ?>
                 <tr>
-                    <td><?=$produto->id?></td>
-                    <td><?=$produto->nome?></td>
-                    <td><?='R$ '.number_format($produto->preco, 2, ',', '.')?></td>
+                    <td><?=$produto->getId()?></td>
+                    <td><?=$produto->getNome()?></td>
+                    <td><?='R$ '.number_format($produto->getPreco(), 2, ',', '.')?></td>
                     <td><?='R$ '.number_format($produto->calcularDesconto(0.1), 2, ',', '.')?></td>
-                    <td><?=!empty($produto->categoria->nome) ? $produto->categoria->nome : '-' ?></td>
-                    <td><?=$produto->usado ? 'Sim' : 'Não'?></td>
+                    <td><?=!empty($produto->getCategoria()->getNome()) ? $produto->getCategoria()->getNome() : '-' ?></td>
+                    <td><?=$produto->getUsado() ? 'Sim' : 'Não'?></td>
                     <td>
-                        <a href="ver-produto.php?id=<?=$produto->id?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                        <a href="formulario-produto.php?id=<?=$produto->id?>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                        <a href="remover-produto.php?id=<?=$produto->id?>" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+                        <a href="ver-produto.php?id=<?=$produto->getId()?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                        <a href="formulario-produto.php?id=<?=$produto->getId()?>" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                        <a href="remover-produto.php?id=<?=$produto->getId()?>" class="btn btn-danger"><i class="fa fa-remove"></i></a>
                     </td>
                 </tr>
             <?php } ?>

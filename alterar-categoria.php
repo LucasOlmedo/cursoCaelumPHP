@@ -2,19 +2,20 @@
 include 'functions/sessao.php';
 include 'templates/header.php';
 require_once 'functions/categorias.class.php';
+require_once 'models/categoria.model.php';
 
 verificaAcesso();
-
 $id = $_POST['id'];
-$nome = $_POST['nome'];
+$categoria = new CategoriaModel;
+$categoria->setNome($_POST['nome']);
 $categoriasClass = new Categorias();
-$result = $categoriasClass->alterarCategoria($id, $nome);
+$result = $categoriasClass->alterarCategoria($id, $categoria);
 ?>
 <div class="row">   
     <div class="col-md-12">
         <?php if($result){ ?>
             <div class="alert alert-success">
-                <span>Categoria: <?=$nome?> - Alterada com sucesso!</span>
+                <span>Categoria: <?=$categoria->getNome()?> - Alterada com sucesso!</span>
             </div>
         <?php }else{ ?>
             <div class="alert alert-danger">

@@ -1,5 +1,6 @@
 <?php
 require_once 'database.php';
+require_once 'models/categoria.model.php';
 
 class Categorias
 {
@@ -11,26 +12,36 @@ class Categorias
         $this->con = $database->con;
     }
 
-    public function insereCategoria($nome)
+    public function insereCategoria($categoria)
     {
-        $nome = mysqli_real_escape_string($this->con, $nome);
-        $query = "INSERT INTO categorias (nome) VALUES ('{$nome}')";
+        $categoria->setNome(mysqli_real_escape_string($this->con, $categoria->getNome()));
+        $query = "INSERT INTO categorias (nome) VALUES ('{$categoria->getNome()}')";
         $result = mysqli_query($this->con, $query);
         return $result;
     }
 
     public function listarCategorias()
     {
+        $arrayCategoria = [];
         $query = "SELECT * FROM categorias";
         $lista = mysqli_query($this->con, $query);
-        return $lista;
+        while ($categoria = mysqli_fetch_assoc($lista)) {
+            $newCategoria = new CategoriaModel;
+            $newCategoria->setId($categoria['id']);
+            $newCategoria->setNome($categoria['nome']);
+            array_push($arrayCategoria, $newCategoria);
+        }
+        return $arrayCategoria;
     }
 
     public function verCategoria($id)
     {
         $query = "SELECT * FROM categorias WHERE id = {$id}";
         $categoria = mysqli_fetch_object(mysqli_query($this->con, $query));
-        return $categoria;
+        $newCategoria = new CategoriaModel;
+        $newCategoria->setId($categoria->id);
+        $newCategoria->setNome($categoria->nome);
+        return $newCategoria;
     }
 
     public function removerCategoria($id)
@@ -43,10 +54,10 @@ class Categorias
         }
     }
 
-    public function alterarCategoria($id, $nome)
+    public function alterarCategoria($id, $categoria)
     {
-        $nome = mysqli_real_escape_string($this->con, $nome);
-        $query = "UPDATE categorias SET nome='{$nome}' WHERE id={$id}";
+        $categoria->setNome(mysqli_real_escape_string($this->con, $categoria->getNome()));
+        $query = "UPDATE categorias SET nome='{$categoria->getNome()}' WHERE id={$id}";
         if(mysqli_query($this->con, $query)){
             return true;
         }else{

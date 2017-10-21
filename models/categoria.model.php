@@ -2,8 +2,18 @@
 
 class CategoriaModel
 {
-    public $id;
-    public $nome;
+    private $id;
+    private $nome;
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 
     public function setNome($nome)
     {

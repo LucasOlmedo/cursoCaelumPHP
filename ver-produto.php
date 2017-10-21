@@ -22,22 +22,22 @@ $produto = $produtoClass->verProduto($_GET['id']);
     <div class="col-md-6 col-md-offset-3">
         <ul class="list-group">
             <li class="list-group-item">
-                <h4><strong>ID: </strong> <span class="pull-right">#<?=$produto->id?></span></h4>
+                <h4><strong>ID: </strong> <span class="pull-right">#<?=$produto->getId()?></span></h4>
             </li>
             <li class="list-group-item">
-                <h4><strong>Nome: </strong> <span class="pull-right"><?=$produto->nome?></span></h4>
+                <h4><strong>Nome: </strong> <span class="pull-right"><?=$produto->getNome()?></span></h4>
             </li>
             <li class="list-group-item">
-                <h4><strong>Preço: </strong> <span class="pull-right"><?='R$ ' . number_format($produto->preco, 2, ',', '.')?></span></h4>
+                <h4><strong>Preço: </strong> <span class="pull-right"><?='R$ ' . number_format($produto->getPreco(), 2, ',', '.')?></span></h4>
             </li>
             <li class="list-group-item">
-                <h4><strong>Descrição: </strong> <span class="pull-right"><?=$produto->descricao?></span></h4>
+                <h4><strong>Descrição: </strong> <span class="pull-right"><?=$produto->getDescricao()?></span></h4>
             </li>
             <li class="list-group-item">
-                <h4><strong>Categoria: </strong> <span class="pull-right"><?=$produto->nome_categoria?></span></h4>
+                <h4><strong>Categoria: </strong> <span class="pull-right"><?=$produto->getCategoria()->getNome()?></span></h4>
             </li>
             <li class="list-group-item">
-                <h4><strong>Usado: </strong> <span class="pull-right"><?=($produto->usado) ? 'Sim' : 'Não'?></span></h4>
+                <h4><strong>Usado: </strong> <span class="pull-right"><?=($produto->getUsado()) ? 'Sim' : 'Não'?></span></h4>
             </li>
         </ul>
     </div>

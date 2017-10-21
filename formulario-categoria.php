@@ -26,10 +26,10 @@ if(!empty($_GET['id'])){
 <div class="row">
     <div class="col-md-12">
         <form action="<?= ($alterar) ? 'alterar-categoria.php' : 'adiciona-categoria.php'?>" method="POST">
-            <input type="hidden" name="id" value="<?= ($alterar) ? $categoria->id : ''?>">
+            <input type="hidden" name="id" value="<?= ($alterar) ? $categoria->getId() : ''?>">
             <div class="form-group">
                 <label for="nome">Nome da categoria</label>
-                <input type="text" name="nome" id="nome" class="form-control" value="<?= ($alterar) ? $categoria->nome : ''?>" required>
+                <input type="text" name="nome" id="nome" class="form-control" value="<?= ($alterar) ? $categoria->getNome() : ''?>" required>
             </div>
             <button type="submit" class="btn btn-primary">
                 <i class="fa fa-check"></i> Salvar
