@@ -3,9 +3,9 @@ require_once 'autoload.php';
 
 verificaAcesso();
 $id = $_POST['id'];
-$produto = new ProdutoModel($_POST);
-$produtosClass = new Produtos();
-$result = $produtosClass->alterarProduto($id, $produto);
+$produto = new Produto($_POST);
+$produtoDAO = new ProdutoDAO();
+$result = $produtoDAO->alterarProduto($id, $produto);
 ?>
 <div class="row">   
     <div class="col-md-12">

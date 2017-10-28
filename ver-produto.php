@@ -2,8 +2,8 @@
 require_once 'autoload.php';
 
 verificaAcesso();
-$produtoClass = new Produtos();
-$produto = $produtoClass->verProduto($_GET['id']);
+$produtoDAO = new ProdutoDAO();
+$produto = $produtoDAO->verProduto($_GET['id']);
 ?>
 <div class="row">
     <div class="page-header">

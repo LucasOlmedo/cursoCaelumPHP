@@ -2,8 +2,8 @@
 require_once 'autoload.php';
 
 verificaAcesso();
-$usuarioClass = new Usuarios();
-$usuario = $usuarioClass->verUsuario($_GET['id']);
+$usuarioDAO = new UsuarioDAO();
+$usuario = $usuarioDAO->verUsuario($_GET['id']);
 ?>
 <div class="row">
     <div class="page-header">

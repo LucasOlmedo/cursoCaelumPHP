@@ -1,7 +1,7 @@
 <?php
 require_once 'autoload.php';
 
-class Usuarios
+class UsuarioDAO
 {
     protected $con;
 

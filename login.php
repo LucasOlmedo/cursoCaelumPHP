@@ -1,12 +1,12 @@
 <?php
 require_once 'autoload.php';
 
-$usuarioClass = new Usuarios();
+$usuarioDAO = new UsuarioDAO();
 
 $login = $_POST['login'];
 $senha = $_POST['senha'];
 
-$verificarUsuario = $usuarioClass->login($login, $senha);
+$verificarUsuario = $usuarioDAO->login($login, $senha);
 
 if($verificarUsuario != FALSE){
     $_SESSION['usuario'] = $verificarUsuario['login'];

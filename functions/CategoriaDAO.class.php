@@ -1,7 +1,7 @@
 <?php
 require_once 'autoload.php';
 
-class Categorias
+class CategoriaDAO
 {
     protected $con;
 
@@ -25,7 +25,7 @@ class Categorias
         $query = "SELECT * FROM categorias";
         $lista = mysqli_query($this->con, $query);
         while ($categoria = mysqli_fetch_assoc($lista)) {
-            $newCategoria = new CategoriaModel;
+            $newCategoria = new Categoria;
             $newCategoria->setId($categoria['id']);
             $newCategoria->setNome($categoria['nome']);
             array_push($arrayCategoria, $newCategoria);
@@ -37,7 +37,7 @@ class Categorias
     {
         $query = "SELECT * FROM categorias WHERE id = {$id}";
         $categoria = mysqli_fetch_object(mysqli_query($this->con, $query));
-        $newCategoria = new CategoriaModel;
+        $newCategoria = new Categoria;
         $newCategoria->setId($categoria->id);
         $newCategoria->setNome($categoria->nome);
         return $newCategoria;

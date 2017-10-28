@@ -2,8 +2,8 @@
 require_once 'autoload.php';
 
 verificaAcesso();
-$categoriaClass = new Categorias();
-$listaCategorias = $categoriaClass->listarCategorias();
+$categoriaDAO = new CategoriaDAO();
+$listaCategorias = $categoriaDAO->listarCategorias();
 ?>
 <?php if(!empty($_GET['removido']) && $_GET['removido'] === 'true'){?>
     <div class="row">

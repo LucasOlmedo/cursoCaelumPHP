@@ -3,9 +3,9 @@ require_once 'autoload.php';
 
 verificaAcesso();
 $id = $_POST['id'];
-$categoria = new CategoriaModel($_POST);
-$categoriasClass = new Categorias();
-$result = $categoriasClass->alterarCategoria($id, $categoria);
+$categoria = new Categoria($_POST);
+$categoriaDAO = new CategoriaDAO();
+$result = $categoriaDAO->alterarCategoria($id, $categoria);
 ?>
 <div class="row">   
     <div class="col-md-12">

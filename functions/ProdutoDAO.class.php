@@ -1,7 +1,7 @@
 <?php
 require_once 'autoload.php';
 
-class Produtos
+class ProdutoDAO
 {
     protected $con;
 
@@ -26,13 +26,13 @@ class Produtos
         $query = "SELECT p.*, c.nome AS nome_categoria FROM produtos AS p LEFT JOIN categorias AS c ON c.id = p.categoria_id";
         $lista = mysqli_query($this->con, $query);
         while ($produto = mysqli_fetch_assoc($lista)) {
-            $newProduto = new ProdutoModel;
+            $newProduto = new Produto;
             $newProduto->setId($produto['id']);
             $newProduto->setNome($produto['nome']);
             $newProduto->setPreco($produto['preco']);
             $newProduto->setDescricao($produto['descricao']);
             $newProduto->setUsado($produto['usado']);
-            $newProduto->setCategoria(new CategoriaModel);
+            $newProduto->setCategoria(new Categoria);
             $newProduto->getCategoria()->setId($produto['categoria_id']);
             $newProduto->getCategoria()->setNome($produto['nome_categoria']);
             array_push($arrayProduto, $newProduto);
@@ -44,13 +44,13 @@ class Produtos
     {
         $query = "SELECT p.*, c.nome AS nome_categoria FROM produtos AS p LEFT JOIN categorias AS c ON c.id = p.categoria_id WHERE p.id = {$id}";
         $produto = mysqli_fetch_object(mysqli_query($this->con, $query));
-        $newProduto = new ProdutoModel;
+        $newProduto = new Produto;
         $newProduto->setId($produto->id);
         $newProduto->setNome($produto->nome);
         $newProduto->setPreco($produto->preco);
         $newProduto->setDescricao($produto->descricao);
         $newProduto->setUsado($produto->usado);
-        $newProduto->setCategoria(new CategoriaModel);
+        $newProduto->setCategoria(new Categoria);
         $newProduto->getCategoria()->setId($produto->categoria_id);
         $newProduto->getCategoria()->setNome($produto->nome_categoria);
         return $newProduto;

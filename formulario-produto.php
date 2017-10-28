@@ -3,11 +3,11 @@ require_once 'autoload.php';
 
 verificaAcesso();
 $alterar = false;
-$categoria = new Categorias();
-$listaCategoria = $categoria->listarCategorias();
+$categoriaDAO = new CategoriaDAO();
+$listaCategoria = $categoriaDAO->listarCategorias();
 if(!empty($_GET['id'])){
-    $produtoClass = new Produtos();
-    $produto = $produtoClass->verProduto($_GET['id']);
+    $produtoDAO = new ProdutoDAO();
+    $produto = $produtoDAO->verProduto($_GET['id']);
     $alterar = true;
 }
 ?>

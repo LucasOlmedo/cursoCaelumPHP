@@ -2,8 +2,8 @@
 require_once 'autoload.php';
 
 verificaAcesso();
-$categoriaClass = new Categorias();
-$categoria = $categoriaClass->verCategoria($_GET['id']);
+$categoriaDAO = new CategoriaDAO();
+$categoria = $categoriaDAO->verCategoria($_GET['id']);
 ?>
 <div class="row">
     <div class="page-header">

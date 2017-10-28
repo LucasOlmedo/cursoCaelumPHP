@@ -4,8 +4,8 @@ require_once 'autoload.php';
 verificaAcesso();
 $alterar = false;
 if(!empty($_GET['id'])){
-    $categoriaClass = new Categorias();
-    $categoria = $categoriaClass->verCategoria($_GET['id']);
+    $categoriaDAO = new CategoriaDAO();
+    $categoria = $categoriaDAO->verCategoria($_GET['id']);
     $alterar = true;
 }
 ?>

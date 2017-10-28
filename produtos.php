@@ -2,8 +2,8 @@
 require_once 'autoload.php';
 
 verificaAcesso();
-$produtosClass = new Produtos();
-$listaProdutos = $produtosClass->listarProdutos();
+$produtosDAO = new ProdutoDAO();
+$listaProdutos = $produtosDAO->listarProdutos();
 ?>
 <?php if(!empty($_GET['removido']) && $_GET['removido'] === 'true'){?>
     <div class="row">

@@ -6,8 +6,8 @@ verificaAcesso();
 $id = $_POST['id'];
 $login = $_POST['login'];
 $senha = !empty($_POST['novasenha']) ? $_POST['novasenha'] : null;
-$usuarioClass = new Usuarios();
-$result = $usuarioClass->alterarUsuario($id, $login, $senha);
+$usuarioDAO = new UsuarioDAO;
+$result = $usuarioDAO->alterarUsuario($id, $login, $senha);
 ?>
 <div class="row">   
     <div class="col-md-12">

@@ -2,9 +2,9 @@
 require_once 'autoload.php';
 
 verificaAcesso();
-$categoria = new CategoriaModel($_POST);
-$categoriaClass = new Categorias();
-$result = $categoriaClass->insereCategoria($categoria);
+$categoria = new Categoria($_POST);
+$categoriaDAO = new CategoriaDAO();
+$result = $categoriaDAO->insereCategoria($categoria);
 ?>
 <div class="row">   
     <div class="col-md-12">

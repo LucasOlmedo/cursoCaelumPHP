@@ -2,9 +2,9 @@
 require_once 'autoload.php';
 
 verificaAcesso();
-$produto = new ProdutoModel($_POST);
-$produtoClass = new Produtos;
-$result = $produtoClass->insereProdutos($produto);
+$produto = new Produto($_POST);
+$produtoDAO = new ProdutoDAO;
+$result = $produtoDAO->insereProdutos($produto);
 ?>
 <div class="row">   
     <div class="col-md-12">
