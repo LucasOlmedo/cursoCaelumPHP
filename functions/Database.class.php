@@ -1,6 +1,6 @@
 <?php
 
-class operacoesDB
+class Database
 {
     public $con;
 

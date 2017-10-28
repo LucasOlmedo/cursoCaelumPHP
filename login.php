@@ -1,6 +1,5 @@
 <?php
-include 'functions/sessao.php';
-require_once 'functions/usuarios.class.php';
+require_once 'autoload.php';
 
 $usuarioClass = new Usuarios();
 

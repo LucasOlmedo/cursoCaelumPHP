@@ -1,6 +1,5 @@
 <?php
-include 'functions/sessao.php';
-require_once 'functions/categorias.class.php';
+require_once 'autoload.php';
 
 verificaAcesso();
 $id = $_GET['id'];

@@ -1,7 +1,5 @@
 <?php
-require_once 'database.php';
-require_once 'models/produto.model.php';
-require_once 'models/categoria.model.php';
+require_once 'autoload.php';
 
 class Produtos
 {
@@ -9,7 +7,7 @@ class Produtos
 
     public function __construct()
     {
-        $database = new operacoesDB();
+        $database = new Database();
         $this->con = $database->con;
     }
 

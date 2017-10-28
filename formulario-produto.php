@@ -1,8 +1,5 @@
 <?php
-include 'functions/sessao.php';
-include 'templates/header.php';
-require_once 'functions/produtos.class.php';
-require_once 'functions/categorias.class.php';
+require_once 'autoload.php';
 
 verificaAcesso();
 $alterar = false;

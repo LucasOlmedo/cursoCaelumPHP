@@ -1,5 +1,5 @@
 <?php
-require_once 'database.php';
+require_once 'autoload.php';
 
 class Usuarios
 {
@@ -7,7 +7,7 @@ class Usuarios
 
     public function __construct()
     {
-        $database = new operacoesDB();
+        $database = new Database();
         $this->con = $database->con;
     }
 

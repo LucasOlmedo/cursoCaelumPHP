@@ -1,6 +1,5 @@
 <?php
-include 'functions/sessao.php';
-include 'templates/header.php';
+require_once 'autoload.php';
 ?>
 <!-- NAO AUTORIZADO -->
 
