@@ -7,7 +7,7 @@ verificaAcesso();
 
 $id = $_POST['id'];
 $login = $_POST['login'];
-$senha = $_POST['senha'];
+$senha = !empty($_POST['novasenha']) ? $_POST['novasenha'] : null;
 $usuarioClass = new Usuarios();
 $result = $usuarioClass->alterarUsuario($id, $login, $senha);
 ?>

@@ -23,11 +23,11 @@ $usuario = $usuarioClass->verUsuario($_GET['id']);
             <input type="hidden" name="id" value="<?=$usuario->id?>">
             <div class="form-group">
                 <label for="login">Login</label>
-                <input type="text" name="login" id="login" class="form-control" value="<?=$usuario->login?>" required>
+                <input type="text" name="login" id="login" class="form-control" value="<?=$usuario->login?>" required autocomplete="off">
             </div>
             <div class="form-group">
-                <label for="senha">Senha</label>
-                <input type="password" name="senha" id="senha" class="form-control" value="<?=$usuario->senha?>" required>
+                <label for="novasenha">Senha</label>
+                <input type="password" name="novasenha" id="novasenha" class="form-control" value="" autocomplete="off">
             </div>
             <button type="submit" class="btn btn-primary">
                 <i class="fa fa-check"></i> Salvar

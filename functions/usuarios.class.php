@@ -43,11 +43,15 @@ class Usuarios
             return 'false';
     }
 
-    public function alterarUsuario($id, $login, $senha)
+    public function alterarUsuario($id, $login, $senha = null)
     {
         $login = mysqli_real_escape_string($this->con, $login);
-        $senha = md5($senha);
-        $query = "UPDATE usuarios SET login='{$login}', senha='{$senha}' WHERE id={$id}";
+        if($senha != null){
+            $senha = md5($senha);
+            $query = "UPDATE usuarios SET login='{$login}', senha='{$senha}' WHERE id={$id}";
+        }else{
+            $query = "UPDATE usuarios SET login='{$login}' WHERE id={$id}";
+        }
         if(mysqli_query($this->con, $query))
             return true;
         else
