@@ -69,13 +69,6 @@ require_once 'autoload.php';
             </a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <a href="contas.php" class="btn btn-info">
-                <i class="fa fa-calculator"></i> Acessar página de contas
-            </a>
-        </div>
-    </div>
 <?php }
 include 'templates/footer.php'; 
 ?>
