@@ -2,7 +2,11 @@
 require_once 'autoload.php';
 
 verificaAcesso();
-$produto = new Produto($_POST);
+if(strcasecmp($_POST['tipo-produto'], 'livro') == 0){
+    $produto = new Livro($_POST);
+}else{
+    $produto = new Produto($_POST);
+}
 $produtoDAO = new ProdutoDAO;
 $result = $produtoDAO->insereProdutos($produto);
 ?>

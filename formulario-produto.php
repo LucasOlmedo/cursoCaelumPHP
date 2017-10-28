@@ -26,12 +26,23 @@ if(!empty($_GET['id'])){
         <form action="<?= ($alterar) ? 'alterar-produto.php' : 'adiciona-produto.php'?>" method="POST">
             <input type="hidden" name="id" value="<?= ($alterar) ? $produto->getId() : ''?>">
             <div class="form-group">
+                <label for="tipo-produto">Tipo do produto</label>
+                <select name="tipo-produto" class="form-control">
+                    <option value="geral">Geral</option>
+                    <option value="livro" <?=($alterar && $produto->temISBN()) ? 'selected' : ''?>>Livro</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="nome">Nome do produto</label>
                 <input type="text" name="nome" id="nome" class="form-control" value="<?= ($alterar) ? $produto->getNome() : ''?>" required>
             </div>
             <div class="form-group">
                 <label for="preco">Preço do produto</label>
                 <input type="number" name="preco" id="preco" step="0.01" class="form-control" value="<?= ($alterar) ? $produto->getPreco() : ''?>" required>
+            </div>
+            <div class="form-group">
+                <label for="isbn">ISBN (Somente para livros)</label>
+                <input type="text" class="form-control" name="isbn" id="isbn" value="<?=$alterar && $produto->temISBN() ? $produto->getIsbn() : ''?>">
             </div>
             <div class="form-group">
                 <label for="descricao">Descrição do produto</label>

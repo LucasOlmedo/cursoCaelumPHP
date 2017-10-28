@@ -24,6 +24,11 @@ $produto = $produtoDAO->verProduto($_GET['id']);
             <li class="list-group-item">
                 <h4><strong>Nome: </strong> <span class="pull-right"><?=$produto->getNome()?></span></h4>
             </li>
+            <?php if($produto->temISBN()){ ?>
+            <li class="list-group-item">
+                <h4><strong>ISBN: </strong> <span class="pull-right"><?=$produto->getIsbn()?></span></h4>
+            </li>
+            <?php } ?>
             <li class="list-group-item">
                 <h4><strong>Preço: </strong> <span class="pull-right"><?='R$ ' . number_format($produto->getPreco(), 2, ',', '.')?></span></h4>
             </li>

@@ -86,6 +86,16 @@ class Produto
         }
         return $this->preco;
     }
+
+    public function calcularImposto()
+    {
+        return $this->preco * 0.195;
+    }
+    
+    public function temISBN()
+    {
+        return $this instanceof Livro;
+    }
 }
 
 ?>
