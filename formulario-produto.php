@@ -51,7 +51,7 @@ if(!empty($_GET['id'])){
                 <label for="categoria">Categoria</label>
                 <select name="categoria" id="categoria" class="form-control">
                     <?php foreach($listaCategoria as $categoria) {?>
-                        <option value="<?=$categoria->getId()?>" <?= ($alterar && $produto->getCategoria() == $categoria->getId()) ? 'selected' : ''?>><?=$categoria->getNome()?></option>
+                        <option value="<?=$categoria->getId()?>" <?= ($alterar && $produto->getCategoria()->getId() == $categoria->getId()) ? 'selected' : ''?>><?=$categoria->getNome()?></option>
                     <?php } ?>
                 </select>
             </div>
